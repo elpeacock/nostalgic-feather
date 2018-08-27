@@ -33,7 +33,7 @@ class App extends Component {
         { name: event.target.value, age: '28' }
       ]
     })
-  }
+  } 
 
   render() {
     const style = {
