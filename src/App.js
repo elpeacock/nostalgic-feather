@@ -49,6 +49,26 @@ class App extends Component {
       padding: '8px', 
       cursor: 'pointer'
     };
+
+    let persons = null;
+
+    if( this.state.showPersons ) {
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age} />
+          <Person
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age} />
+          <Person
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+            click={this.switchNameHandler.bind(this, 'Lizzie')}
+            changed={this.nameChangedHandler} >I am the React instructor</Person>
+        </div>
+      )
+    }
     // this return statement with jsx gets rendered by React as the React.createElement script below
     return (
       //I am the root element...it is best practice to wrap jsx in one root element
@@ -58,22 +78,10 @@ class App extends Component {
          {/* () => this.blahblah('moreblah') syntax can be performance heavy use .bind whenever possible */}
         <button 
           style={ style }
-          onClick={ this.togglePersonsHandler }>Switch Name</button>
-        { this.state.showPersons ?
-          <div>
-            <Person 
-              name={ this.state.persons[0].name }  
-              age={ this.state.persons[0].age } />
-            <Person 
-              name={ this.state.persons[1].name } 
-              age={ this.state.persons[1].age } />
-            <Person 
-              name={ this.state.persons[2].name} 
-              age={ this.state.persons[2].age }
-              click={ this.switchNameHandler.bind(this, 'Lizzie') }
-              changed={ this.nameChangedHandler } >I am the React instructor</Person>
-          </div> : null
-        } 
+          onClick={ this.togglePersonsHandler }>Show People
+        </button>
+        { persons }
+
       </div>
     );
     //return React.createElement('div', { className: 'App'}, React.createElement('h1', null, 'Does this work now??'));
